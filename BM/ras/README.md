@@ -4,5 +4,4 @@ AMD EYPC processor Scalable family supports various Reliability, Availability, a
 # MCE / MCA test cases
 - Machine Check Architecture (MCA) is an AMD mechanism in which the CPU reports hardware errors to the operating system.
 - Machine check exception (MCE) is a type of error that occurs when a problem involving the hardware is detected.
-
-# EOF
+- **mce\_mca:** Covers RAS mce, mca tests, the details can be found in [mce\_mca/README.md](mce\_mca/README.md).
