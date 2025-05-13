@@ -33,7 +33,7 @@ Latest tested upstream version: v6.14.5
 
 2. If virtualization testcases need to be run, the guest disk image should be created by running create_guest_image.sh provided in this repository
     ```bash
-    git clone git://sos-git.amd.com/elves.git
+    git clone https://github.com/AMDESE/elves.git
     cd elves
     bash create_guest_image.sh
     ```
