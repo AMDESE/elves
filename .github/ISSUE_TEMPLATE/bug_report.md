@@ -24,9 +24,15 @@ A clear and concise description of what you expected to happen.
 A clear and concise description of what is currently happening.
 
 ** System information **
+- Platform: [Bare Metal (BM) or Virtualization (Virt)]
 - OS: [e.g., output of `lsb_release -a`]
 - Kernel: [e.g., output of `uname -r`]
-- Elves tag/branch/version: [e.g., v1.0.0 or main branch]
+- Elves tag/branch/version: [e.g., elves_05_2025 or master branch]
+- In case of Virt:
+     Guest kernel version:
+     Guest Base OS:
+     QEMU version:
+     OVMF/edk2 version:
 - Hardware platform: [e.g., AMD EPYC processors Family 1Ah (codenamed "Turin")]
 
 ** Additional information **
