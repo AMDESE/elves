@@ -88,4 +88,4 @@ KVM Tests: [Qemu Test repository](https://github.com/autotest/tp-qemu), [Libvirt
 ### Known Issues and Limitation:
 Refer to [Issues](https://github.com/AMDESE/elves/issues) in this repository for details on bugs, limitations, future enhancements, and investigations.
 
-Click [here](https://github.com/AMDESE/elves/issues/new) to open a new issue.
+Click [here](https://github.com/AMDESE/elves/issues/new/choose) to open a new issue.
