@@ -14,14 +14,19 @@ in a virtual machine environment.
 Host Operating system - Ubuntu 24.04.2 LTS (Noble Numbat)<br>
 Guest Operating system - Ubuntu 24.04.2 LTS (Noble Numbat)
 
+### Supported component versions
+The test cases published in this repository are validated with the following component versions:
+- **Baremetal OS kernel**:
+    * Minimum upstream kernel version: v6.14
+    * Latest tested upstream version: v6.15.1
+- **KVM guest kernel**:
+    * upstream version: v6.15.1
+- **QEMU**: v9.2.3
+- **OVMF (EDK2)**: edk2-stable202502
+
 ### Supported Hardware
 AMD EPYC processors Family 19h (codenamed "Genoa")<br>
 AMD EPYC processors Family 1Ah (codenamed "Turin")
-
-### Supported Kernel
-The testcases published are tested against Linux upstream kernel.<br>
-Minimum upstream kernel version: v6.14<br>
-Latest tested upstream version: v6.14.5
 
 ### Steps to run the testcases
 ##### Note: Tests should be run with the superuser permissions.
@@ -58,12 +63,13 @@ Latest tested upstream version: v6.14.5
     buslock/
     io/iommu/
     io/iommu/amd/
+    memory/page_table.py
     ```
     There exists a readme file in each of above the test directories explaining the feature and the input requirements.
 
     Below are the current AMD EPYC virtualization Feature specific test cases hosted in [tp-qemu](https://github.com/AMDESE/tp-qemu)
     ```
-    AMD SEV-SNP guest boot test: qemu/tests/snp_boot.py
+    AMD CVM guest boot tests: qemu/tests/amd_cvm_boot.py
     ```
 
 5. To run the testcases users should be updating the testcase specific inputs, guidance for which is provided in the respective test README files and test configuration files.
@@ -77,6 +83,9 @@ Latest tested upstream version: v6.14.5
     python3 ./avocado-setup.py --nrunner --vt qemu --run-suite guest_AMD_elves --guest-os 24.04-server.x86_64 --no-download
     ```
 The ELVES project is forked off of [tests](https://github.com/lop-devops/tests). We intend to funnel back changes to the parent project as relevant.
+
+### Reference Kernel Configurations
+The `reference_kconfig` folder contains sample host and guest kernel configuration files used to validate the test cases in this repository. 
 
 ### References:
 [Avocado Test Framework](https://github.com/avocado-framework/avocado)<br>
