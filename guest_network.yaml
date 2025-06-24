@@ -2,7 +2,7 @@ network:
   version: 2
   renderer: networkd
   ethernets:
-    all-interfaces:
+    alleths:
       match:
-        name: "*"
-      dhcp4: yes
+        name: "e*"
+      dhcp4: true
