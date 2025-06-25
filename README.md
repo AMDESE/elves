@@ -42,7 +42,9 @@ AMD EPYC processors Family 1Ah (codenamed "Turin")
     cd elves
     bash create_guest_image.sh
     ```
-    Note: Disk image creation is supported only for Ubuntu 24.04 LTS (Noble Numbat).<br>
+    Note:
+    1. Disk image creation is supported only for Ubuntu 24.04 LTS (Noble Numbat).
+    2. When creating a guest image on a physical host with the SIT kernel module enabled, the appliance's IPv4 interface may fail to configure properly due to interference from the SIT0 interface. This issue is fixed in upstream libguestfs [commit](https://github.com/libguestfs/libguestfs/commit/dc218b25f0bc2704918748e4e8120ec436783e58).
 
 3. Bootstrap the avocado environment:
     ```bash
