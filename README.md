@@ -25,8 +25,9 @@ The test cases published in this repository are validated with the following com
 - **OVMF (EDK2)**: edk2-stable202502
 
 ### Supported Hardware
-AMD EPYC processors Family 19h (codenamed "Genoa")<br>
-AMD EPYC processors Family 1Ah (codenamed "Turin")
+AMD EPYC 3rd Generation Processors Family 19h (codenamed "Milan")<br>
+AMD EPYC 4th Generation Processors Family 19h (codenamed "Genoa")<br>
+AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
 
 ### Steps to run the testcases
 ##### Note: Tests should be run with the superuser permissions.
