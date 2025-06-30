@@ -72,6 +72,7 @@ AMD EPYC processors Family 1Ah (codenamed "Turin")
     Below are the current AMD EPYC virtualization Feature specific test cases hosted in [tp-qemu](https://github.com/AMDESE/tp-qemu)
     ```
     AMD CVM guest boot tests: qemu/tests/amd_cvm_boot.py
+    Guest boot tests in different IOMMU modes: qemu/tests/qemu_pci_passthrough.py
     ```
 
 5. To run the testcases users should be updating the testcase specific inputs, guidance for which is provided in the respective test README files and test configuration files.
