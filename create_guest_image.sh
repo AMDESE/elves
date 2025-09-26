@@ -44,8 +44,8 @@ if [ ${#missing_bins[@]} -gt 0 ]; then
     install_prereq
 fi
 
-#Download Ubuntu 24.04 cloud image (version 20250430, tested)
-image_url="https://cloud-images.ubuntu.com/releases/noble/release-20250430/ubuntu-24.04-server-cloudimg-amd64.img"
+#Download Ubuntu 24.04 cloud image (version 20250805, tested)
+image_url="https://cloud-images.ubuntu.com/releases/noble/release-20250805/ubuntu-24.04-server-cloudimg-amd64.img"
 image_file=$(basename $image_url)
 
 #Remove any old images by the same name
