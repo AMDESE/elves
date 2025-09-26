@@ -11,18 +11,18 @@ Avocado Test Framework and run a suite of tests to help verify AMD EPYC Feature 
 in a virtual machine environment.
 
 ### Supported Linux Distributions Version
-Host Operating system - Ubuntu 24.04.2 LTS (Noble Numbat)<br>
-Guest Operating system - Ubuntu 24.04.2 LTS (Noble Numbat)
+Host Operating system - Ubuntu 24.04.3 LTS (Noble Numbat)<br>
+Guest Operating system - Ubuntu 24.04.3 LTS (Noble Numbat)
 
 ### Supported component versions
 The test cases published in this repository are validated with the following component versions:
 - **Baremetal OS kernel**:
     * Minimum upstream kernel version: v6.14
-    * Latest tested upstream version: v6.15.1
+    * Latest tested upstream version: v6.16.3
 - **KVM guest kernel**:
-    * upstream version: v6.15.1
-- **QEMU**: v9.2.3
-- **OVMF (EDK2)**: edk2-stable202502
+    * upstream version: v6.16.3
+- **QEMU**: v10.1.0
+- **OVMF (EDK2)**: edk2-stable202508
 
 ### Supported Hardware
 AMD EPYC 3rd Generation Processors Family 19h (codenamed "Milan")<br>
@@ -65,14 +65,33 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     qos/pqos/
     buslock/
     io/iommu/
-    io/iommu/amd/
-    memory/page_table.py
+        amd/
+        interrupt.py
+    memory/
+        page_table.py
+    cpu/
+        rapl-core-energy.py
+        rapl-pkg-energy.py
+        hwmon-powercap.py
+        pmqos-cpu-latency.py
+        cpuidle-usage.py
+        em_cpuidle.py
+    kernel/
+        srso_mitigation.py
+        tlbi_test.py
+        kselftest.py used to run below AMD EPYC Feature specific test
+            kvm:kvm_buslock_test
     ```
     There exists a readme file in each of above the test directories explaining the feature and the input requirements.
 
-    Below are the current AMD EPYC virtualization Feature specific test cases hosted in [tp-qemu](https://github.com/AMDESE/tp-qemu)
+    Below are the current AMD EPYC virtualization Feature specific test cases hosted in [tp-qemu](https://github.com/AMDESE/tp-qemu/tree/AMD_elves)
     ```
     AMD CVM guest boot tests: qemu/tests/amd_cvm_boot.py
+    AMD SNP guest attestation: qemu/tests/snp_attestation.py
+    Idle HLT Intercept: qemu/tests/idlehlt.py
+    EPYC-cpu model verification: qemu/tests/x86_cpu_model.py
+    SNP host kernel parameter verification: qemu/tests/test_snp_params.py
+    Kdump/kexec verification on AMD CVM: generic/tests/kdump.py
     Guest boot tests in different IOMMU modes: qemu/tests/qemu_pci_passthrough.py
     ```
 
@@ -86,7 +105,9 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     Running only virtualization testcases:
     python3 ./avocado-setup.py --nrunner --vt qemu --run-suite guest_AMD_elves --guest-os 24.04-server.x86_64 --no-download
     ```
-The ELVES project is forked off of [tests](https://github.com/lop-devops/tests). We intend to funnel back changes to the parent project as relevant.
+The ELVES project is forked from [tests](https://github.com/lop-devops/tests). We intend to funnel relevant changes back to the parent project. If you encounter any issues related to the AMD platform-specific IP testcases listed above, we kindly ask that you open a GitHub issue in this repository. Please provide detailed information following the bug report template to help us address the problem efficiently.
+
+For any issues related to the parent project or other projects mentioned in the references section, we encourage you to open an issue in the respective parent repository. Since all referenced projects are open-source, you are also welcome to contribute directly to them.
 
 ### Reference Kernel Configurations
 The `reference_kconfig` folder contains sample host and guest kernel configuration files used to validate the test cases in this repository. 
