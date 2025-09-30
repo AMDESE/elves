@@ -61,7 +61,7 @@ qemu-img resize $image_file 10G
 
 echo "Customizing image with virt-customize:"
 virt-customize -a $image_file \
-    --uninstall cloud-init \
+    --run-command 'apt-get --purge remove -y cloud-init kdump-tools cloud-initramfs-copymods' \
     --root-password password:12345678 \
     --install isc-dhcp-client,isc-dhcp-client-ddns,openssh-server,grub2 \
     --copy-in guest_network.yaml:/etc/netplan/ \
