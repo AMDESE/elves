@@ -18,11 +18,11 @@ Guest Operating system - Ubuntu 24.04.3 LTS (Noble Numbat)
 The test cases published in this repository are validated with the following component versions:
 - **Baremetal OS kernel**:
     * Minimum upstream kernel version: v6.14
-    * Latest tested upstream version: v6.16.3
+    * Latest tested upstream version: v6.18
 - **KVM guest kernel**:
-    * upstream version: v6.16.3
-- **QEMU**: v10.1.0
-- **OVMF (EDK2)**: edk2-stable202508
+    * upstream version: v6.18
+- **QEMU**: v10.1.2
+- **OVMF (EDK2)**: edk2-stable202511
 
 ### Supported Hardware
 AMD EPYC 3rd Generation Processors Family 19h (codenamed "Milan")<br>
@@ -63,12 +63,20 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     ```
     ras/amd/mce_mca
     qos/pqos/
+        qos-llc-test.py
+        sysfs-qos-mbm-test.py
     buslock/
     io/iommu/
         amd/
         interrupt.py
+        sva.py
     memory/
         page_table.py
+    cxl/cxl_test.py.data/
+        driver-basic.py
+        cxl-numa.py
+        daxctl.py
+        uefi.py
     cpu/
         rapl-core-energy.py
         rapl-pkg-energy.py
@@ -76,11 +84,13 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
         pmqos-cpu-latency.py
         cpuidle-usage.py
         em_cpuidle.py
+        amd_cpu_topology.py
     kernel/
         srso_mitigation.py
         tlbi_test.py
         kselftest.py used to run below AMD EPYC Feature specific test
-            kvm:kvm_buslock_test
+            kvm: kvm_buslock_test
+            cpufreq: basic, sptest1, sptest2
     ```
     There exists a readme file in each of above the test directories explaining the feature and the input requirements.
 
@@ -92,7 +102,9 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     EPYC-cpu model verification: qemu/tests/x86_cpu_model.py
     SNP host kernel parameter verification: qemu/tests/test_snp_params.py
     Kdump/kexec verification on AMD CVM: generic/tests/kdump.py
+    Segmented RMP table validation: qemu/tests/segmented_rmp_validation.py
     Guest boot tests in different IOMMU modes: qemu/tests/qemu_pci_passthrough.py
+    srso mitigation verification test using avocado-misc-test: generic/tests/avocado_guest.py
     ```
 
 5. To run the testcases users should be updating the testcase specific inputs, guidance for which is provided in the respective test README files and test configuration files.
@@ -120,6 +132,11 @@ The `reference_kconfig` folder contains sample host and guest kernel configurati
 KVM Tests: [Qemu Test repository](https://github.com/autotest/tp-qemu), [Libvirt Test repository](https://github.com/autotest/tp-libvirt)
 
 ### Known Issues and Limitation:
-Refer to [Issues](https://github.com/AMDESE/elves/issues) in this repository for details on bugs, limitations, future enhancements, and investigations.
+
+1. Recent Linux kernel versions (starting from v6.17.8) have been disabling RDSEED on AMD EPYC platforms based on Zen 5 architecture, citing AMD security bulletin AMD-SB-7055[](https://www.amd.com/en/resources/product-security/bulletin/amd-sb-7055.html). As a result, the CPU model verification test cases are cancelled on whenever RDSEED is listed as an unavailable feature. This is a known limitation that is currently under investigation to determine whether the fix should be applied in the test case or in QEMU.
+
+2. Recent firmware versions on AMD EPYC platforms include security patches that prevent SEV-ES guest types from booting when SNP support is enabled. A workaround for booting SEV-ES guests is to either disable SEV-SNP in the BIOS or boot the kernel with the `sev=nosnp` command-line parameter.
+
+Also refer to [Issues](https://github.com/AMDESE/elves/issues) in this repository for details on bugs, limitations, future enhancements, and investigations.
 
 Click [here](https://github.com/AMDESE/elves/issues/new/choose) to open a new issue.
