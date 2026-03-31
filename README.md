@@ -11,18 +11,18 @@ Avocado Test Framework and run a suite of tests to help verify AMD EPYC Feature 
 in a virtual machine environment.
 
 ### Supported Linux Distributions Version
-Host Operating system - Ubuntu 24.04.3 LTS (Noble Numbat)<br>
-Guest Operating system - Ubuntu 24.04.3 LTS (Noble Numbat)
+Host Operating system - Ubuntu 24.04.4 LTS (Noble Numbat)<br>
+Guest Operating system - Ubuntu 24.04.4 LTS (Noble Numbat)
 
 ### Supported component versions
 The test cases published in this repository are validated with the following component versions:
 - **Baremetal OS kernel**:
     * Minimum upstream kernel version: v6.14
-    * Latest tested upstream version: v6.18
+    * Latest tested upstream stable version: v6.19.4
 - **KVM guest kernel**:
-    * upstream version: v6.18
-- **QEMU**: v10.1.2
-- **OVMF (EDK2)**: edk2-stable202511
+    * upstream stable version: v6.19.4
+- **QEMU**: v10.1.4
+- **OVMF (EDK2)**: edk2-stable202602
 
 ### Supported Hardware
 AMD EPYC 3rd Generation Processors Family 19h (codenamed "Milan")<br>
@@ -63,15 +63,22 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     ```
     ras/amd/mce_mca
     qos/pqos/
+        qos.py
         qos-llc-test.py
+        qos-mbm-test.py
+        sysfs-qos-llc-test.py
         sysfs-qos-mbm-test.py
+        sysfs-qos-rmid-pin-test.py
     buslock/
     io/iommu/
-        amd/
+        iommu_tests.py
+        amd/iommu_v2pgmode_test.py
         interrupt.py
         sva.py
     memory/
         page_table.py
+    kvm/
+        kvm_unittest.py
     cxl/cxl_test.py.data/
         driver-basic.py
         cxl-numa.py
@@ -85,6 +92,7 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
         cpuidle-usage.py
         em_cpuidle.py
         amd_cpu_topology.py
+        fred.py
     kernel/
         srso_mitigation.py
         tlbi_test.py
@@ -103,7 +111,8 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     SNP host kernel parameter verification: qemu/tests/test_snp_params.py
     Kdump/kexec verification on AMD CVM: generic/tests/kdump.py
     Segmented RMP table validation: qemu/tests/segmented_rmp_validation.py
-    Guest boot tests in different IOMMU modes: qemu/tests/qemu_pci_passthrough.py
+    Guest boot tests with VFIO PCI passthrough and guest IOMMU modes (including emulated AMD IOMMU, along with IOMMU DMA remap and interrupt remap, with high vCPU variants wired in `qemu/tests/cfg/`): qemu/tests/qemu_pci_passthrough.py
+    Local live migration with Mellanox VF and IOMMU or device dirty tracking: qemu/tests/local_migration_with_mlnx.py
     srso mitigation verification test using avocado-misc-test: generic/tests/avocado_guest.py
     ```
 
