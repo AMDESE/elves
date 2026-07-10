@@ -122,7 +122,7 @@ def get_env_type(enable_kvm=False):
     env_type = get_machine_type()
     if env_type == "NV" and enable_kvm:
         env_type = "kvm"
-    if 'ubuntu' in dist:
+    if 'ubuntu' in dist or 'debian' in dist:
         cmd_pat = "apt list --installed | grep -i '%s'"
     else:
         cmd_pat = "rpm -q %s"
@@ -142,7 +142,7 @@ def get_install_cmd():
     Get the command to install, based on the distro
     """
     (dist, _) = get_dist()
-    if 'ubuntu' in dist:
+    if 'ubuntu' in dist or 'debian' in dist:
         cmd = "echo y | apt-get install"
     elif 'sles' in dist:
         cmd = "zypper install -y"
