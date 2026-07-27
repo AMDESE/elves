@@ -12,6 +12,7 @@ Use the **`downstream`** branch for flows in this file.
 |---------|-------|-----------------|------------------|-------------------|
 | VeLinux-2.2 | Host (baremetal) only | `debian` | `config/tests/host/VeLinux_elves.cfg` | `host_VeLinux_elves` |
 | Anolis OS 23.4 | Host (baremetal) only | `anolis` | `config/tests/host/Anolis_elves.cfg` | `host_Anolis_elves` |
+| openEuler 24.03 (LTS) | Host (baremetal) only | `openEuler` | `config/tests/host/openEuler_elves.cfg` | `host_openEuler_elves` |
 
 Each distro uses its own `<Distro>_elves.cfg` with run suite `host_<Distro>_elves`. The run steps below are
 identical for every supported host OS — substitute the **Host config file** and
@@ -35,12 +36,19 @@ Validated against `config/tests/host/Anolis_elves.cfg` / `--run-suite host_Anoli
 
 - **Baremetal OS kernel**: 6.6.102-5.2.an23.x86_64 (Anolis OS 23.4); also validated with upstream kernel v6.19.4
 
+#### openEuler 24.03 (LTS)
+
+Validated against `config/tests/host/openEuler_elves.cfg` / `--run-suite host_openEuler_elves`:
+
+- **Baremetal OS kernel**: 6.6.0-145.0.13.139.oe2403.x86_64 (openEuler 24.03 LTS); also validated with upstream kernel v6.19.4
+
 ### Steps to run the testcases
 
 These steps are the same for every supported downstream host OS. In the commands below,
 replace `<Distro>_elves.cfg` and `host_<Distro>_elves` with the values for your host OS from the
 **Supported downstream host operating systems** table above (for example `VeLinux_elves.cfg` /
-`host_VeLinux_elves`, or `Anolis_elves.cfg` / `host_Anolis_elves`).
+`host_VeLinux_elves`, `Anolis_elves.cfg` / `host_Anolis_elves`, or
+`openEuler_elves.cfg` / `host_openEuler_elves`).
 
 ##### Note: Tests should be run with superuser permissions.
 
@@ -52,7 +60,8 @@ replace `<Distro>_elves.cfg` and `host_<Distro>_elves` with the values for your 
 4. A host package section in **`config/wrapper/env.conf`**. Bootstrap selects it from your
    `/etc/os-release` `ID`: an `ID`+major-version section (for example `[deps_debian13]`) is tried
    first, then it falls back to `[deps_<ID>]`. Add `[deps_<ID>]` for your OS — for example
-   `[deps_debian]` for VeLinux (`ID=debian`) and `[deps_anolis]` for Anolis (`ID=anolis`).
+   `[deps_debian]` for VeLinux (`ID=debian`), `[deps_anolis]` for Anolis (`ID=anolis`), and
+   `[deps_openEuler24]` for openEuler 24.03 (`ID=openEuler`).
 
 #### 1. Clone the repository
 
