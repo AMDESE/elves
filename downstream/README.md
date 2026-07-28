@@ -28,7 +28,7 @@ All downstream host OSes are host (baremetal) only for now.
 
 Validated against `config/tests/host/VeLinux_elves.cfg` / `--run-suite host_VeLinux_elves`:
 
-- **Baremetal OS kernel**: v6.6 (VeLinux-2.2); also validated with upstream kernel v6.19.4
+- **Baremetal OS kernel**: 6.6.95.ve.3-amd64 (https://github.com/openvelinux/kernel/tree/v6.6.95.ve.3[c59b892d042]); also validated with upstream kernel v7.0.10
 
 #### Anolis OS 23.4
 
