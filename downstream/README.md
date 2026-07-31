@@ -13,6 +13,7 @@ Use the **`downstream`** branch for flows in this file.
 | VeLinux-2.2 | Host (baremetal) only | `debian` | `config/tests/host/VeLinux_elves.cfg` | `host_VeLinux_elves` |
 | Anolis OS 23.4 | Host (baremetal) only | `anolis` | `config/tests/host/Anolis_elves.cfg` | `host_Anolis_elves` |
 | openEuler 24.03 (LTS) | Host (baremetal) only | `openEuler` | `config/tests/host/openEuler_elves.cfg` | `host_openEuler_elves` |
+| OpenCloudOS 9.4 | Host (baremetal) only | `opencloudos` | `config/tests/host/OpenCloudOS_elves.cfg` | `host_OpenCloudOS_elves` |
 
 Each distro uses its own `<Distro>_elves.cfg` with run suite `host_<Distro>_elves`. The run steps below are
 identical for every supported host OS — substitute the **Host config file** and
@@ -42,13 +43,20 @@ Validated against `config/tests/host/openEuler_elves.cfg` / `--run-suite host_op
 
 - **Baremetal OS kernel**: 6.6.0-145.0.13.139.oe2403.x86_64 (openEuler 24.03 LTS); also validated with upstream kernel v6.19.4
 
+#### OpenCloudOS 9.4
+
+Validated against `config/tests/host/OpenCloudOS_elves.cfg` / `--run-suite host_OpenCloudOS_elves`:
+
+- **Baremetal OS kernel**: 6.6.119-49.21.oc9.x86_64 (OpenCloudOS 9.4); also validated with upstream kernel v6.19.4
+
 ### Steps to run the testcases
 
 These steps are the same for every supported downstream host OS. In the commands below,
 replace `<Distro>_elves.cfg` and `host_<Distro>_elves` with the values for your host OS from the
 **Supported downstream host operating systems** table above (for example `VeLinux_elves.cfg` /
-`host_VeLinux_elves`, `Anolis_elves.cfg` / `host_Anolis_elves`, or
-`openEuler_elves.cfg` / `host_openEuler_elves`).
+`host_VeLinux_elves`, `Anolis_elves.cfg` / `host_Anolis_elves`,
+`openEuler_elves.cfg` / `host_openEuler_elves`, or
+`OpenCloudOS_elves.cfg` / `host_OpenCloudOS_elves`).
 
 ##### Note: Tests should be run with superuser permissions.
 
@@ -60,8 +68,9 @@ replace `<Distro>_elves.cfg` and `host_<Distro>_elves` with the values for your 
 4. A host package section in **`config/wrapper/env.conf`**. Bootstrap selects it from your
    `/etc/os-release` `ID`: an `ID`+major-version section (for example `[deps_debian13]`) is tried
    first, then it falls back to `[deps_<ID>]`. Add `[deps_<ID>]` for your OS — for example
-   `[deps_debian]` for VeLinux (`ID=debian`), `[deps_anolis]` for Anolis (`ID=anolis`), and
-   `[deps_openEuler24]` for openEuler 24.03 (`ID=openEuler`).
+   `[deps_debian]` for VeLinux (`ID=debian`), `[deps_anolis]` for Anolis (`ID=anolis`),
+   `[deps_openEuler24]` for openEuler 24.03 (`ID=openEuler`), and `[deps_opencloudos9]` for
+   OpenCloudOS 9.4 (`ID=opencloudos`).
 
 #### 1. Clone the repository
 
