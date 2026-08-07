@@ -10,7 +10,7 @@ Use the **`downstream`** branch for flows in this file.
 
 | Host OS | Scope | os-release `ID` | Host config file | Avocado run suite |
 |---------|-------|-----------------|------------------|-------------------|
-| VeLinux-2.2 | Host (baremetal) only | `debian` | `config/tests/host/VeLinux_elves.cfg` | `host_VeLinux_elves` |
+| veLinux-2.2 | Host (baremetal) only | `debian` | `config/tests/host/veLinux_elves.cfg` | `host_veLinux_elves` |
 | Anolis OS 23.4 | Host (baremetal) only | `anolis` | `config/tests/host/Anolis_elves.cfg` | `host_Anolis_elves` |
 | openEuler 24.03 (LTS) | Host (baremetal) only | `openEuler` | `config/tests/host/openEuler_elves.cfg` | `host_openEuler_elves` |
 | OpenCloudOS 9.4 | Host (baremetal) only | `opencloudos` | `config/tests/host/OpenCloudOS_elves.cfg` | `host_OpenCloudOS_elves` |
@@ -25,11 +25,11 @@ The testcase sets in distro-specific config files are validated against the comp
 Structure matches the upstream **Supported component versions** section in the top-level README.
 All downstream host OSes are host (baremetal) only for now.
 
-#### VeLinux-2.2
+#### veLinux-2.2
 
-Validated against `config/tests/host/VeLinux_elves.cfg` / `--run-suite host_VeLinux_elves`:
+Validated against `config/tests/host/veLinux_elves.cfg` / `--run-suite host_veLinux_elves`:
 
-- **Baremetal OS kernel**: 6.6.95.ve.3-amd64 (https://github.com/openvelinux/kernel/tree/v6.6.95.ve.3[c59b892d042]); also validated with upstream kernel v7.0.10
+- **Baremetal OS kernel**: 6.6.95.ve.3-amd64 (https://github.com/openvelinux/kernel/tree/v6.6.95.ve.3, commit c59b892d042); also validated with upstream kernel v7.0.10
 
 #### Anolis OS 23.4
 
@@ -53,8 +53,8 @@ Validated against `config/tests/host/OpenCloudOS_elves.cfg` / `--run-suite host_
 
 These steps are the same for every supported downstream host OS. In the commands below,
 replace `<Distro>_elves.cfg` and `host_<Distro>_elves` with the values for your host OS from the
-**Supported downstream host operating systems** table above (for example `VeLinux_elves.cfg` /
-`host_VeLinux_elves`, `Anolis_elves.cfg` / `host_Anolis_elves`,
+**Supported downstream host operating systems** table above (for example `veLinux_elves.cfg` /
+`host_veLinux_elves`, `Anolis_elves.cfg` / `host_Anolis_elves`,
 `openEuler_elves.cfg` / `host_openEuler_elves`, or
 `OpenCloudOS_elves.cfg` / `host_OpenCloudOS_elves`).
 
@@ -68,7 +68,7 @@ replace `<Distro>_elves.cfg` and `host_<Distro>_elves` with the values for your 
 4. A host package section in **`config/wrapper/env.conf`**. Bootstrap selects it from your
    `/etc/os-release` `ID`: an `ID`+major-version section (for example `[deps_debian13]`) is tried
    first, then it falls back to `[deps_<ID>]`. Add `[deps_<ID>]` for your OS — for example
-   `[deps_debian]` for VeLinux (`ID=debian`), `[deps_anolis]` for Anolis (`ID=anolis`),
+   `[deps_debian]` for veLinux (`ID=debian`), `[deps_anolis]` for Anolis (`ID=anolis`),
    `[deps_openEuler24]` for openEuler 24.03 (`ID=openEuler`), and `[deps_opencloudos9]` for
    OpenCloudOS 9.4 (`ID=opencloudos`).
 
