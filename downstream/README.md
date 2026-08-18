@@ -11,7 +11,7 @@ Use the **`downstream`** branch for flows in this file.
 | Host OS | Scope | os-release `ID` | Host config file | Avocado run suite |
 |---------|-------|-----------------|------------------|-------------------|
 | veLinux-2.2 | Host (baremetal) only | `debian` | `config/tests/host/veLinux_elves.cfg` | `host_veLinux_elves` |
-| Anolis OS 23.4 | Host (baremetal) only | `anolis` | `config/tests/host/Anolis_elves.cfg` | `host_Anolis_elves` |
+| Anolis OS 23.5 | Host (baremetal) only | `anolis` | `config/tests/host/Anolis_elves.cfg` | `host_Anolis_elves` |
 | openEuler 24.03 (LTS) | Host (baremetal) only | `openEuler` | `config/tests/host/openEuler_elves.cfg` | `host_openEuler_elves` |
 | OpenCloudOS 9.4 | Host (baremetal) only | `opencloudos` | `config/tests/host/OpenCloudOS_elves.cfg` | `host_OpenCloudOS_elves` |
 
@@ -31,7 +31,7 @@ Validated against `config/tests/host/veLinux_elves.cfg` / `--run-suite host_veLi
 
 - **Baremetal OS kernel**: 6.6.95.ve.3-amd64 (https://github.com/openvelinux/kernel/tree/v6.6.95.ve.3, commit c59b892d042); also validated with upstream kernel v7.0.10
 
-#### Anolis OS 23.4
+#### Anolis OS 23.5
 
 Validated against `config/tests/host/Anolis_elves.cfg` / `--run-suite host_Anolis_elves`:
 
