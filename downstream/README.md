@@ -35,7 +35,7 @@ Validated against `config/tests/host/veLinux_elves.cfg` / `--run-suite host_veLi
 
 Validated against `config/tests/host/Anolis_elves.cfg` / `--run-suite host_Anolis_elves`:
 
-- **Baremetal OS kernel**: 6.6.102-5.2.an23.x86_64 (Anolis OS 23.4); also validated with upstream kernel v6.19.4
+- **Baremetal OS kernel**: 6.6.102 (Repo: https://gitee.com/anolis/cloud-kernel.git [branch: devel-6.6] [commit id: e7011e86f7e9]); also validated with upstream kernel v7.0.10
 
 #### openEuler 24.03 (LTS)
 
