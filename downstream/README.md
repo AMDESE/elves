@@ -41,7 +41,7 @@ Validated against `config/tests/host/Anolis_elves.cfg` / `--run-suite host_Anoli
 
 Validated against `config/tests/host/openEuler_elves.cfg` / `--run-suite host_openEuler_elves`:
 
-- **Baremetal OS kernel**: 6.6.0-145.0.13.139.oe2403.x86_64 (openEuler 24.03 LTS); also validated with upstream kernel v6.19.4
+- **Baremetal OS kernel**: 6.6.0 ( Repo: https://atomgit.com/openeuler/kernel.git , branch: OLK-6.6 , commit: 35d62f2f4fc5 ); also validated with upstream kernel v7.0.10
 
 #### OpenCloudOS 9.4
 
