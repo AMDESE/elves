@@ -13,7 +13,7 @@ Use the **`downstream`** branch for flows in this file.
 | veLinux-2.2 | Host (baremetal) only | `debian` | `config/tests/host/veLinux_elves.cfg` | `host_veLinux_elves` |
 | Anolis OS 23.5 | Host (baremetal) only | `anolis` | `config/tests/host/Anolis_elves.cfg` | `host_Anolis_elves` |
 | openEuler 24.03 (LTS) | Host (baremetal) only | `openEuler` | `config/tests/host/openEuler_elves.cfg` | `host_openEuler_elves` |
-| OpenCloudOS 9.4 | Host (baremetal) only | `opencloudos` | `config/tests/host/OpenCloudOS_elves.cfg` | `host_OpenCloudOS_elves` |
+| OpenCloudOS 9.6 | Host (baremetal) only | `opencloudos` | `config/tests/host/OpenCloudOS_elves.cfg` | `host_OpenCloudOS_elves` |
 
 Each distro uses its own `<Distro>_elves.cfg` with run suite `host_<Distro>_elves`. The run steps below are
 identical for every supported host OS — substitute the **Host config file** and
@@ -43,11 +43,11 @@ Validated against `config/tests/host/openEuler_elves.cfg` / `--run-suite host_op
 
 - **Baremetal OS kernel**: 6.6.0 ( Repo: https://atomgit.com/openeuler/kernel.git , branch: OLK-6.6 , commit: 35d62f2f4fc5 ); also validated with upstream kernel v7.0.10
 
-#### OpenCloudOS 9.4
+#### OpenCloudOS 9.6
 
 Validated against `config/tests/host/OpenCloudOS_elves.cfg` / `--run-suite host_OpenCloudOS_elves`:
 
-- **Baremetal OS kernel**: 6.6.119-49.21.oc9.x86_64 (OpenCloudOS 9.4); also validated with upstream kernel v6.19.4
+- **Baremetal OS kernel**: 6.6.119-49.21.oc9.x86_64 ( Repo: https://gitee.com/OpenCloudOS/OpenCloudOS-Kernel.git , branch: linux-6.6/devel , commit: 6415102d4571 ); also validated with upstream kernel v7.0.10
 
 ### Steps to run the testcases
 
@@ -70,7 +70,7 @@ replace `<Distro>_elves.cfg` and `host_<Distro>_elves` with the values for your 
    first, then it falls back to `[deps_<ID>]`. Add `[deps_<ID>]` for your OS — for example
    `[deps_debian]` for veLinux (`ID=debian`), `[deps_anolis]` for Anolis (`ID=anolis`),
    `[deps_openEuler24]` for openEuler 24.03 (`ID=openEuler`), and `[deps_opencloudos9]` for
-   OpenCloudOS 9.4 (`ID=opencloudos`).
+   OpenCloudOS 9.6 (`ID=opencloudos`).
 
 #### 1. Clone the repository
 
