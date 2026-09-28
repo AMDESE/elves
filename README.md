@@ -153,6 +153,8 @@ KVM Tests: [Qemu Test repository](https://github.com/autotest/tp-qemu), [Libvirt
 
 2. Recent firmware versions on AMD EPYC platforms include security patches that prevent SEV-ES guest types from booting when SNP support is enabled. A workaround for booting SEV-ES guests is to either disable SEV-SNP in the BIOS or boot the kernel with the `sev=nosnp` command-line parameter.
 
+3. Kdump/kexec test inside a SEV-SNP guest (`kdump.one_vm.basic.sev_snp`) is expected to fail on upstream kernel >=v7.0 that do not include the upstream fix, which is yet to be merged: [x86/sev: Skip DR7 write during kexec when it would trigger an unserviceable #VC](https://lore.kernel.org/all/20260821201432.879450-1-Ashish.Kalra@amd.com/).
+
 Also refer to [Issues](https://github.com/AMDESE/elves/issues) in this repository for details on bugs, limitations, future enhancements, and investigations.
 
 Click [here](https://github.com/AMDESE/elves/issues/new/choose) to open a new issue.
