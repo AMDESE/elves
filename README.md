@@ -11,8 +11,8 @@ Avocado Test Framework and run a suite of tests to help verify AMD EPYC Feature 
 in a virtual machine environment.
 
 ### Supported Linux Distributions Version
-Host Operating system - Ubuntu 24.04.4 LTS (Noble Numbat)<br>
-Guest Operating system - Ubuntu 24.04.4 LTS (Noble Numbat)
+Host Operating system - Ubuntu 26.04.1 LTS (Resolute Raccoon)<br>
+Guest Operating system - Ubuntu 26.04.1 LTS (Resolute Raccoon)
 
 Additional downstream host operating systems, validated component levels, and run instructions are maintained on the [`downstream` branch](https://github.com/AMDESE/elves/tree/downstream); see [`downstream/README.md`](https://github.com/AMDESE/elves/blob/downstream/downstream/README.md) there.
 
@@ -20,11 +20,11 @@ Additional downstream host operating systems, validated component levels, and ru
 The test cases published in this repository are validated with the following component versions:
 - **Baremetal OS kernel**:
     * Minimum upstream kernel version: v6.14
-    * Latest tested upstream stable version: v7.0.10
+    * Latest tested upstream stable version: v7.2.3
 - **KVM guest kernel**:
-    * upstream stable version: v7.0.10
-- **QEMU**: v10.1.4
-- **OVMF (EDK2)**: edk2-stable202605
+    * upstream stable version: v7.2.3
+- **QEMU**: v11.1
+- **OVMF (EDK2)**: edk2-stable202608
 
 ### Supported Hardware
 AMD EPYC 3rd Generation Processors Family 19h (codenamed "Milan")<br>
@@ -46,7 +46,7 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     bash create_guest_image.sh
     ```
     Note:
-    1. Disk image creation is supported only for Ubuntu 24.04 LTS (Noble Numbat).
+    1. The default disk image is Ubuntu 26.04.1 LTS (Resolute Raccoon). `--image-path` or `--image-url` can also customize another Ubuntu/Debian or RHEL-family cloud image.
     2. When creating a guest image on a physical host with the SIT kernel module enabled, the appliance's IPv4 interface may fail to configure properly due to interference from the SIT0 interface. This issue is fixed in upstream libguestfs [commit](https://github.com/libguestfs/libguestfs/commit/dc218b25f0bc2704918748e4e8120ec436783e58).
 
 3. Bootstrap the avocado environment:
@@ -64,6 +64,8 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     Below are the locations of current Baremetal AMD EPYC Feature specific test cases hosted in [avocado-misc-tests](https://github.com/AMDESE/avocado-misc-tests/tree/AMD_elves):
     ```
     ras/amd/mce_mca
+    ras/amd/smca_bank_types.py
+    ras/amd/smca_thr_interrupt.py
     qos/pqos/
         qos.py
         qos-llc-test.py
@@ -126,11 +128,11 @@ AMD EPYC 5th Generation processors Family 1Ah (codenamed "Turin")
     Running the testcases:
     ```bash
     Running both baremetal and virtualization testcases:
-    python3 ./avocado-setup.py --nrunner --vt qemu --run-suite host_AMD_elves,guest_AMD_elves --guest-os 24.04-server.x86_64 --no-download
+    python3 ./avocado-setup.py --nrunner --vt qemu --run-suite host_AMD_elves,guest_AMD_elves --guest-os 26.04-server.x86_64 --no-download
     Running only baremetal testcases:
     python3 ./avocado-setup.py --nrunner --run-suite host_AMD_elves --no-download
     Running only virtualization testcases:
-    python3 ./avocado-setup.py --nrunner --vt qemu --run-suite guest_AMD_elves --guest-os 24.04-server.x86_64 --no-download
+    python3 ./avocado-setup.py --nrunner --vt qemu --run-suite guest_AMD_elves --guest-os 26.04-server.x86_64 --no-download
     ```
 
 The ELVES project is forked from [tests](https://github.com/lop-devops/tests). We intend to funnel relevant changes back to the parent project. If you encounter any issues related to the AMD platform-specific IP testcases listed above, we kindly ask that you open a GitHub issue in this repository. Please provide detailed information following the bug report template to help us address the problem efficiently.
@@ -152,6 +154,8 @@ KVM Tests: [Qemu Test repository](https://github.com/autotest/tp-qemu), [Libvirt
 1. Recent Linux kernel versions (starting from v6.17.8) have been disabling RDSEED on AMD EPYC platforms based on Zen 5 architecture, citing AMD security bulletin AMD-SB-7055[](https://www.amd.com/en/resources/product-security/bulletin/amd-sb-7055.html). As a result, the CPU model verification test cases are cancelled on whenever RDSEED is listed as an unavailable feature. This is a known limitation that is currently under investigation to determine whether the fix should be applied in the test case or in QEMU.
 
 2. Recent firmware versions on AMD EPYC platforms include security patches that prevent SEV-ES guest types from booting when SNP support is enabled. A workaround for booting SEV-ES guests is to either disable SEV-SNP in the BIOS or boot the kernel with the `sev=nosnp` command-line parameter.
+
+3. Kdump/kexec test inside a SEV-SNP guest (`kdump.one_vm.basic.sev_snp`) is expected to fail on upstream kernel >=v7.0 that do not include the upstream fix, which is yet to be merged: [x86/sev: Skip DR7 write during kexec when it would trigger an unserviceable #VC](https://lore.kernel.org/all/20260821201432.879450-1-Ashish.Kalra@amd.com/).
 
 Also refer to [Issues](https://github.com/AMDESE/elves/issues) in this repository for details on bugs, limitations, future enhancements, and investigations.
 

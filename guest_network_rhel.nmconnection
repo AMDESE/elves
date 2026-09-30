@@ -1,0 +1,14 @@
+[connection]
+id=dhcp-all-ethernet
+type=ethernet
+autoconnect=true
+multi-connect=3
+
+[match]
+interface-name=e*;
+
+[ipv4]
+method=auto
+
+[ipv6]
+method=auto
